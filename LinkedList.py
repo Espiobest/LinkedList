@@ -86,7 +86,7 @@ class DoublyLinkedList:
         self.head = None
         self.len = 0
 
-    def copy(self):
+    def copy(self) -> DoublyLinkedList:
         """Returns a copy of the list"""
         new_list = DoublyLinkedList(return_nodes=self.return_nodes)
         item = self.head
