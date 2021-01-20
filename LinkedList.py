@@ -212,6 +212,7 @@ class DoublyLinkedList:
         return new
 
     def __deepcopy__(self, memo={}):
+        """Return a deepcopy of the linked list"""
         lst = DoublyLinkedList()
         item = self.head
         while item is not None:
@@ -264,7 +265,6 @@ class DoublyLinkedList:
 
     def __lt__(self, other) -> bool:
         """:return self < other """
-        """:return self > other"""
         if not isinstance(other, (list, DoublyLinkedList)):
             raise TypeError(f"""'<' not supported between instances of 'DoublyLinkedList' and
                      '{str(type(other)).split("'")[1]}'""")
