@@ -144,7 +144,7 @@ class DoublyLinkedList:
         self.len += 1
 
     def extend(self, iterable: Iterable) -> None:
-        """Extend list by adding elements from an iterable."""
+        """Extend list by adding elements from an iterable"""
         if isinstance(iterable, DoublyLinkedList):
             if self.len > 0:
                 self.head.next = iterable.head
@@ -156,7 +156,7 @@ class DoublyLinkedList:
                 self.append(item)
 
     def __len__(self) -> int:
-        """:returns: len(self)."""
+        """:returns: len(self)"""
         return self.len
 
     def __repr__(self) -> str:
@@ -164,7 +164,7 @@ class DoublyLinkedList:
         return f"Linked List Object Containing: [{', '.join(str(i) for i in self)}]"
 
     def remove(self, obj) -> None:
-        """:returns: first occurrence of value."""
+        """:returns: first occurrence of value"""
         if self.head.data == obj:
             self.head = self.head.next
             self.current = self.head
@@ -182,7 +182,7 @@ class DoublyLinkedList:
         self.len -= 1
 
     def sort(self, *, key=None, reverse: bool = False) -> None:
-        """Sort in place."""
+        """Sort in place"""
         if key is None:
             new = DoublyLinkedList(sorted(self.copy(), reverse=reverse), return_nodes=self.return_nodes)
         else:
@@ -203,7 +203,7 @@ class DoublyLinkedList:
                 item = item.next
 
     def __add__(self, other):
-        """:returns: self + other."""
+        """:returns: self + other"""
         old = DoublyLinkedList(self.copy(), return_nodes=self.return_nodes)
         self.extend(other)
         new = self.copy()
@@ -243,7 +243,7 @@ class DoublyLinkedList:
         return new_list
 
     def __contains__(self, item) -> bool:
-        """:returns: item in self."""
+        """:returns: item in self"""
         for node in self:
             if node == item or node.data == item:
                 return True
@@ -263,7 +263,7 @@ class DoublyLinkedList:
         return self.len > len(other)
 
     def __lt__(self, other) -> bool:
-        """:return self < other """
+        """:return self < other"""
         if not isinstance(other, (list, DoublyLinkedList)):
             raise TypeError(f"'<' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
@@ -298,7 +298,7 @@ class DoublyLinkedList:
         return self.len <= len(other)
 
     def __eq__(self, other) -> bool:
-        """:returns: self == other."""
+        """:returns: self == other"""
 
         if isinstance(other, Iterable) and self.len == len(other):
             if other in self and self in other:
@@ -318,7 +318,7 @@ class DoublyLinkedList:
         return self.head is not None
 
     def __getitem__(self, item):
-        """:returns: x.__getitem__(y) <==> x[y]."""
+        """:returns: x.__getitem__(y) <==> x[y]"""
         if isinstance(item, int):
             return self.get(item)
         elif isinstance(item, slice):
@@ -359,7 +359,7 @@ class DoublyLinkedList:
         self.pop(key)
 
     def __reversed__(self):
-        """:returns: reversed(self)."""
+        """:returns: reversed(self)"""
         new_list = DoublyLinkedList(self.copy(), return_nodes=self.return_nodes)
         new_list.reverse()
         return new_list
