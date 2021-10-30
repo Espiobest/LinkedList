@@ -212,7 +212,7 @@ class DoublyLinkedList:
         return new
 
     def __deepcopy__(self, memo={}):
-
+        """Implement copy.deepcopy(self)"""
         lst = DoublyLinkedList()
         item = self.head
         while item is not None:
