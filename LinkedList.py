@@ -263,7 +263,7 @@ class DoublyLinkedList:
         return self.len > len(other)
 
     def __lt__(self, other) -> bool:
-        """:return self < other"""
+        """:returns: self < other"""
         if not isinstance(other, (list, DoublyLinkedList)):
             raise TypeError(f"'<' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
