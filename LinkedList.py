@@ -25,7 +25,7 @@ class DoublyLinkedList:
                 self.add(value)
 
     def add(self, obj) -> None:
-        """add an item to the list"""
+        """Add an item to the list"""
         last = Node(obj, prev=self.last)
         if self.head is None:
             self.head = last
@@ -39,9 +39,9 @@ class DoublyLinkedList:
         self.add(obj)
 
     def index(self, obj, start: int = 0, end: int = None) -> Optional[int]:
-        """Return the first index of the value in the list, None if not found"""
+        """:returns: the first index of the value in the list, None if not found"""
         end = end or self.len
-        if start > end or start > self.len-1 or end < 1:
+        if start > end or start > self.len - 1 or end < 1:
             return None
 
         index = 0
@@ -54,12 +54,12 @@ class DoublyLinkedList:
         return None
 
     def get(self, index: int) -> Node:
-        """Return the node from the index"""
+        """:returns: the node from the index"""
         count = 0
         obj = self.head
         index = index if index >= 0 else self.len + index
 
-        if index == self.len-1:
+        if index == self.len - 1:
             return self.last
 
         if index < 0 or index > self.len - 1:
@@ -72,7 +72,7 @@ class DoublyLinkedList:
             count += 1
 
     def count(self, obj) -> int:
-        """Return the number of times the object appears in the list"""
+        """:returns: the number of times the object appears in the list"""
         count = 0
         item = self.head
         while item is not None:
@@ -87,7 +87,7 @@ class DoublyLinkedList:
         self.len = 0
 
     def copy(self):
-        """Returns a copy of the list"""
+        """:returns: a copy of the list"""
         new_list = DoublyLinkedList(return_nodes=self.return_nodes)
         item = self.head
         while item is not None:
@@ -100,7 +100,7 @@ class DoublyLinkedList:
         if self.head is None:
             raise IndexError("pop from empty Linked List")
 
-        if index is None or index == self.len-1 or index == -1:
+        if index is None or index == self.len - 1 or index == -1:
             item = self.last
             if self.last.prev is None:
                 self.head = None
@@ -156,15 +156,15 @@ class DoublyLinkedList:
                 self.append(item)
 
     def __len__(self) -> int:
-        """Return len(self)."""
+        """:returns: len(self)."""
         return self.len
 
     def __repr__(self) -> str:
-        """Return repr(self)"""
+        """:returns: repr(self)"""
         return f"Linked List Object Containing: [{', '.join(str(i) for i in self)}]"
 
     def remove(self, obj) -> None:
-        """Remove first occurrence of value."""
+        """:returns: first occurrence of value."""
         if self.head.data == obj:
             self.head = self.head.next
             self.current = self.head
@@ -203,7 +203,7 @@ class DoublyLinkedList:
                 item = item.next
 
     def __add__(self, other):
-        """Return self+other."""
+        """:returns: self + other."""
         old = DoublyLinkedList(self.copy(), return_nodes=self.return_nodes)
         self.extend(other)
         new = self.copy()
@@ -212,6 +212,7 @@ class DoublyLinkedList:
         return new
 
     def __deepcopy__(self, memo={}):
+
         lst = DoublyLinkedList()
         item = self.head
         while item is not None:
@@ -220,7 +221,7 @@ class DoublyLinkedList:
         return lst
 
     def __radd__(self, other):
-        """return self+other"""
+        """:returns: other + self"""
         old = DoublyLinkedList(self.copy(), return_nodes=self.return_nodes)
         self.clear()
         self.extend(other)
@@ -231,7 +232,7 @@ class DoublyLinkedList:
         return new
 
     def __mul__(self, other):
-        """:return self*other"""
+        """:returns: self * other"""
         new_list = DoublyLinkedList(return_nodes=self.return_nodes)
         for i in range(abs(other)):
             new_list.extend(self.copy())
@@ -242,17 +243,16 @@ class DoublyLinkedList:
         return new_list
 
     def __contains__(self, item) -> bool:
-        """Return item in self."""
+        """:returns: item in self."""
         for node in self:
             if node == item or node.data == item:
                 return True
         return False
 
     def __gt__(self, other) -> bool:
-        """:return self > other"""
+        """:returns: self > other"""
         if not isinstance(other, (list, DoublyLinkedList)):
-            raise TypeError(f"""'>' not supported between instances of 'DoublyLinkedList' and
-             '{str(type(other)).split("'")[1]}'""")
+            raise TypeError(f"'>' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
         for x, y in zip(self, other):
             if x > y:
@@ -264,10 +264,8 @@ class DoublyLinkedList:
 
     def __lt__(self, other) -> bool:
         """:return self < other """
-        """:return self > other"""
         if not isinstance(other, (list, DoublyLinkedList)):
-            raise TypeError(f"""'<' not supported between instances of 'DoublyLinkedList' and
-                     '{str(type(other)).split("'")[1]}'""")
+            raise TypeError(f"'<' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
         for x, y in zip(self, other):
             if x < y:
@@ -278,10 +276,9 @@ class DoublyLinkedList:
         return self.len < len(other)
 
     def __ge__(self, other) -> bool:
-        """:return self >= other"""
+        """:returns: self >= other"""
         if not isinstance(other, (list, DoublyLinkedList)):
-            raise TypeError(f"""'>=' not supported between instances of 'DoublyLinkedList' and
-                     '{str(type(other)).split("'")[1]}'""")
+            raise TypeError(f"'>=' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
         for x, y in zip(self, other):
             if x < y:
@@ -290,10 +287,9 @@ class DoublyLinkedList:
         return self.len >= len(other)
 
     def __le__(self, other) -> bool:
-        """:return self <= other"""
+        """:returns: self <= other"""
         if not isinstance(other, (list, DoublyLinkedList)):
-            raise TypeError(f"""'<=' not supported between instances of 'DoublyLinkedList' and
-                     '{str(type(other)).split("'")[1]}'""")
+            raise TypeError(f"'<=' not supported between instances of 'DoublyLinkedList' and '{type(other).__name__}'")
 
         for x, y in zip(self, other):
             if x > y:
@@ -302,8 +298,8 @@ class DoublyLinkedList:
         return self.len <= len(other)
 
     def __eq__(self, other) -> bool:
-        """Return self == other."""
-        # noinspection PyTypeChecker
+        """:returns: self == other."""
+
         if isinstance(other, Iterable) and self.len == len(other):
             if other in self and self in other:
                 return True
@@ -314,15 +310,15 @@ class DoublyLinkedList:
         return False
 
     def __ne__(self, other) -> bool:
-        """:returns self != other"""
+        """:returns: self != other"""
         return not self.__eq__(other)
 
     def __bool__(self) -> bool:
-        """:returns bool(self)"""
+        """:returns: bool(self)"""
         return self.head is not None
 
     def __getitem__(self, item):
-        """:returns x.__getitem__(y) <==> x[y]."""
+        """:returns: x.__getitem__(y) <==> x[y]."""
         if isinstance(item, int):
             return self.get(item)
         elif isinstance(item, slice):
@@ -363,7 +359,7 @@ class DoublyLinkedList:
         self.pop(key)
 
     def __reversed__(self):
-        """return reversed(self)."""
+        """:returns: reversed(self)."""
         new_list = DoublyLinkedList(self.copy(), return_nodes=self.return_nodes)
         new_list.reverse()
         return new_list
@@ -376,15 +372,3 @@ class DoublyLinkedList:
         current = self.current
         self.current = self.current.next
         return current.data
-
-
-ll2 = DoublyLinkedList()
-ll2.add(2)
-print(ll2)
-ll2.append((4, 5, 6))
-print(ll2)
-print(ll2.__getitem__(1))
-ll2.__setitem__(0, [2, 14])
-print(ll2)
-ll2.__delitem__(1)
-print(ll2)
